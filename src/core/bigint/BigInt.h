@@ -20,8 +20,13 @@ public:
     BigInt modInverse(const BigInt& m) const;
     std::string toString(int base = 10) const;
     static void setBackend(std::shared_ptr<IBigIntBackend> prototype);
+    BigInt(const BigInt& other);
+    BigInt(BigInt&& other) noexcept;
+    BigInt& operator=(const BigInt& other);
+    BigInt& operator=(BigInt&& other) noexcept;
 private:
     std::unique_ptr<IBigIntBackend> impl_;
+    static std::shared_ptr<IBigIntBackend> defaultBackend_;
 };
 
 } // namespace ecc

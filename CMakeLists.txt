@@ -12,16 +12,16 @@ option(ECC_BUILD_FUZZ       "Build libFuzzer targets (clang)" OFF)
 
 # ---- external libraries (adjust to your setup / vcpkg / Conan) ----
 find_package(Threads REQUIRED)
-# find_package(GMP REQUIRED)
-# find_package(Boost REQUIRED)
-# find_package(OpenSSL REQUIRED)
-# find_package(nlohmann_json REQUIRED)
-# find_package(spdlog REQUIRED)
+# find_package(GMP REQUIRED)          # week 4: no CMake config on Homebrew; use find_library then
+# find_package(Boost REQUIRED)        # not needed: Boost backend is header-only (cpp_int)
+find_package(OpenSSL 3 REQUIRED)
+find_package(nlohmann_json REQUIRED)
+find_package(spdlog REQUIRED)
 
 # ---- core library ----
 file(GLOB_RECURSE CORE_SOURCES CONFIGURE_DEPENDS src/core/*.cpp)
 add_library(ecc_core STATIC ${CORE_SOURCES})
-target_include_directories(ecc_core PUBLIC src)
+target_include_directories(ecc_core PUBLIC src /opt/homebrew/include)
 target_link_libraries(ecc_core PUBLIC Threads::Threads)
 # target_link_libraries(ecc_core PUBLIC gmp gmpxx OpenSSL::Crypto nlohmann_json::nlohmann_json spdlog::spdlog)
 
@@ -43,7 +43,7 @@ endif()
 # ---- tests ----
 if(ECC_BUILD_TESTS)
   enable_testing()
-  find_package(Catch2 3 QUIET)
+  find_package(Catch2 3 REQUIRED)
   if(Catch2_FOUND)
     file(GLOB TEST_SOURCES CONFIGURE_DEPENDS tests/*.cpp)
     add_executable(ecc_tests ${TEST_SOURCES})

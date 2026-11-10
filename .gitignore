@@ -1,0 +1,47 @@
+# Build directories
+build/
+build_*/
+cmake-build-*/
+out/
+
+# CMake generated
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.ninja
+*.ninja.d
+.ninja_deps
+.ninja_log
+compile_commands.json
+
+# Compiled objects / binaries
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+ecc_cli
+ecc_gui
+ecc_tests
+ecc_bench
+fuzz_*
+
+# Qt / moc / rcc / uic generated
+moc_*.cpp
+qrc_*.cpp
+ui_*.h
+*.moc
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
