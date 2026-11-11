@@ -126,4 +126,12 @@ int BoostBackend::compare(const IBigIntBackend& rhs) const {
     return 0;
 }
 
+bool BoostBackend::testBit(std::size_t i) const {
+    return ((value_ >> i) & 1) != 0;
+}
+
+void BoostBackend::shiftRight(std::size_t n){
+    value_ >>= n;
+}
+
 } // namespace ecc

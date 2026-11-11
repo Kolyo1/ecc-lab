@@ -21,6 +21,9 @@ public:
     void modPow(const IBigIntBackend& e, const IBigIntBackend& m) override;
     void modInverse(const IBigIntBackend& m) override;
     int compare(const IBigIntBackend& rhs) const override;
+    bool testBit(std::size_t i) const override;
+    void shiftRight(std::size_t n) override;
+    
 private:
     boost::multiprecision::cpp_int value_ = 0;
 };

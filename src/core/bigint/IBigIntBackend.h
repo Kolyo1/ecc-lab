@@ -17,6 +17,8 @@ public:
     virtual void modPow(const IBigIntBackend& e, const IBigIntBackend& m) = 0;
     virtual void modInverse(const IBigIntBackend& m) = 0;
     virtual int  compare(const IBigIntBackend& rhs) const = 0;
+    virtual bool testBit(std::size_t i) const = 0;
+    virtual void shiftRight(std::size_t n) = 0;
 };
 
 } // namespace ecc

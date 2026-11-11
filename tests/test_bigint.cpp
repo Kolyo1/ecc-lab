@@ -1,4 +1,7 @@
 #include <catch2/catch_test_macros.hpp>
+#include "core/bigint/BigInt.h"
+
+using namespace ecc;
 
 TEST_CASE("add/sub/mul") {
     BigInt a("123"), b("456");
