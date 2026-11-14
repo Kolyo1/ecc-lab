@@ -48,7 +48,7 @@ Point WeierstrassCurve::add(const Point& P, const Point& Q) const {
     if (Q.isInfinity) return P;
     if (P.x == Q.x) {
         if (P.y == Q.y) return dbl(P);
-        return infinityPoint();   // P = -Q
+        return infinityPoint();
     }
 
     BigInt num = mod(Q.y - P.y, params_.p);

@@ -9,6 +9,7 @@ namespace ecc {
 class ICurve {
 public:
     virtual ~ICurve() = default;
+    virtual Point identity() const = 0;
     virtual Point add(const Point& P, const Point& Q) const = 0;
     virtual Point dbl(const Point& P) const = 0;
     virtual Point negate(const Point& P) const = 0;
