@@ -10,6 +10,7 @@ public:
     Point dbl(const Point& P) const override;
     Point negate(const Point& P) const override;
     Point scalarMul(const BigInt& k, const Point& P) const override;
+    Point identity() const override;
     bool  isOnCurve(const Point& P) const override;
     const CurveParams& params() const override;
     void setScalarMulStrategy(std::shared_ptr<IScalarMulStrategy> s) override;

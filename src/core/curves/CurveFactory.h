@@ -9,6 +9,8 @@ class CurveFactory {
 public:
     static std::unique_ptr<ICurve> create(const std::string& name);
     static std::unique_ptr<ICurve> create(const CurveParams& params, const std::string& form);
+    static void registerStandardCurves();
+    static CurveParams secp256k1Params();
+    static CurveParams p256Params();
 };
-
 } // namespace ecc

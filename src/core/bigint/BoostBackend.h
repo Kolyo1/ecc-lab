@@ -23,6 +23,8 @@ public:
     int compare(const IBigIntBackend& rhs) const override;
     bool testBit(std::size_t i) const override;
     void shiftRight(std::size_t n) override;
+    void shiftLeft(std::size_t n) override;
+    std::size_t bitLength() const override;
     
 private:
     boost::multiprecision::cpp_int value_ = 0;

@@ -88,4 +88,14 @@ BigInt BigInt::operator>>(std::size_t n) const {
     return r;
 }
 
+std::size_t BigInt::bitLength() const {
+    return impl_->bitLength();
+}
+
+BigInt BigInt::operator<<(std::size_t n) const {
+    BigInt r(*this);
+    r.impl_->shiftLeft(n);
+    return r;
+}
+
 } // namespace ecc

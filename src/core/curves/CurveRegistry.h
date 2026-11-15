@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <functional>
+#include <map>
 
 namespace ecc {
 
@@ -16,6 +17,7 @@ public:
     std::vector<std::string> list() const;
 private:
     CurveRegistry() = default;
+    std::map<std::string, Creator> creators_;
 };
 
 } // namespace ecc

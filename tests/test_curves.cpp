@@ -4,6 +4,7 @@
 #include "core/curves/MontgomeryCurve.h"
 #include "core/curves/EdwardsCurve.h"
 #include "core/curves/CurveParams.h"
+#include "core/curves/CurveFactory.h"
 
 using namespace ecc;
 
@@ -58,7 +59,7 @@ TEST_CASE("negate tiny") {
     Point P{ BigInt("5"), BigInt("1"), false };
     Point N = c.negate(P);
     REQUIRE(N.x.toString() == "5");
-    REQUIRE(N.y.toString() == "16");   // -1 mod 17 = 16
+    REQUIRE(N.y.toString() == "16");   
     Point O = c.add(P, N);
     REQUIRE(O.isInfinity);
 }
@@ -67,8 +68,8 @@ static CurveParams montParams() {
     CurveParams p;
     p.name = "mont-tiny";
     p.p = BigInt("17");
-    p.a = BigInt("3");   // A
-    p.b = BigInt("1");   // B
+    p.a = BigInt("3");   
+    p.b = BigInt("1"); 
     p.G = Point{ BigInt("5"), BigInt("1"), false };
     p.n = BigInt("1");
     p.h = BigInt("1");
@@ -113,8 +114,8 @@ static CurveParams edParams() {
     CurveParams p;
     p.name = "ed-tiny";
     p.p = BigInt("17");
-    p.a = BigInt("1");   // a_quad
-    p.b = BigInt("3");   // d
+    p.a = BigInt("1");   
+    p.b = BigInt("3"); 
     p.G = Point{ BigInt("1"), BigInt("0"), false };
     p.n = BigInt("1");
     p.h = BigInt("1");
@@ -154,4 +155,34 @@ TEST_CASE("Edwards negate") {
     Point I = c.add(P, N);
     REQUIRE(I.x.toString() == "0");
     REQUIRE(I.y.toString() == "1");
+}
+
+TEST_CASE("CurveFactory secp256k1") {
+    CurveFactory::registerStandardCurves();
+    auto c = CurveFactory::create("secp256k1");
+    REQUIRE(c != nullptr);
+    REQUIRE(c->isOnCurve(c->params().G));
+    // n * G == identity (infinity for Weierstrass)
+    Point O = c->scalarMul(c->params().n, c->params().G);
+    REQUIRE(O.isInfinity);
+}
+
+TEST_CASE("CurveFactory p256") {
+    CurveFactory::registerStandardCurves();
+    auto c = CurveFactory::create("P-256");
+    REQUIRE(c != nullptr);
+    REQUIRE(c->isOnCurve(c->params().G));
+    Point O = c->scalarMul(c->params().n, c->params().G);
+    REQUIRE(O.isInfinity);
+}
+
+TEST_CASE("CurveFactory unknown returns null") {
+    REQUIRE(CurveFactory::create("nope") == nullptr);
+}
+
+TEST_CASE("CurveFactory custom form") {
+    CurveParams p = tinyParams();
+    auto c = CurveFactory::create(p, "Weierstrass");
+    REQUIRE(c != nullptr);
+    REQUIRE(CurveFactory::create(p, "Bogus") == nullptr);
 }

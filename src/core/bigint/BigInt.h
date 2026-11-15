@@ -29,7 +29,9 @@ public:
     BigInt& operator=(const BigInt& other);
     BigInt& operator=(BigInt&& other) noexcept;
     bool testBit(std::size_t i) const;
+    std::size_t bitLength() const;
     BigInt operator>>(std::size_t n) const;
+    BigInt operator<<(std::size_t n) const;
 private:
     std::unique_ptr<IBigIntBackend> impl_;
     static std::shared_ptr<IBigIntBackend> defaultBackend_;

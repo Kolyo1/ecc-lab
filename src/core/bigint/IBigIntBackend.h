@@ -19,6 +19,8 @@ public:
     virtual int  compare(const IBigIntBackend& rhs) const = 0;
     virtual bool testBit(std::size_t i) const = 0;
     virtual void shiftRight(std::size_t n) = 0;
+    virtual void shiftLeft(std::size_t n) = 0;
+    virtual std::size_t bitLength() const = 0;
 };
 
 } // namespace ecc

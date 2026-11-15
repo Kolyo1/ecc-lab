@@ -134,4 +134,16 @@ void BoostBackend::shiftRight(std::size_t n){
     value_ >>= n;
 }
 
+void BoostBackend::shiftLeft(std::size_t n){
+    value_ <<= n;
+}
+
+std::size_t BoostBackend::bitLength() const {
+    if (value_ == 0) return 1;
+    std::size_t n = 0;
+    auto v = value_;
+    while (v > 0) { ++n; v >>= 1; }
+    return n;
+}
+
 } // namespace ecc

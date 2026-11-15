@@ -11,7 +11,9 @@ class ProtocolBase {
 public:
     ProtocolBase(std::shared_ptr<ICurve> curve, std::shared_ptr<IScalarMulStrategy> strategy);
     virtual ~ProtocolBase() = default;
-    void run();                               // template method
+    void run();
+    const KeyPair& keyPair() const { return keyPair_; }
+    KeyPair& keyPair() { return keyPair_; }
 protected:
     virtual void generateKeys() = 0;
     virtual void performStep() = 0;
@@ -20,6 +22,7 @@ protected:
     std::shared_ptr<ICurve> curve_;
     std::shared_ptr<IScalarMulStrategy> strategy_;
     std::unique_ptr<IProtocolState> state_;
+    KeyPair keyPair_;
 };
 
 } // namespace ecc

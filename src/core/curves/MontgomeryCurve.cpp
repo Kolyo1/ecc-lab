@@ -79,7 +79,9 @@ namespace ecc {
         return res;
     }
 
-    const CurveParams& MontgomeryCurve::params() const { return params_; }
+    Point MontgomeryCurve::identity() const { return infinityPoint(); }
+
+const CurveParams& MontgomeryCurve::params() const { return params_; }
 
     void MontgomeryCurve::setScalarMulStrategy(std::shared_ptr<IScalarMulStrategy> s) { mul_ = std::move(s); }
 

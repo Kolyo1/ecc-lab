@@ -77,6 +77,8 @@ Point WeierstrassCurve::scalarMul(const BigInt& k, const Point& P) const {
     return result;
 }
 
+Point WeierstrassCurve::identity() const { return infinityPoint(); }
+
 const CurveParams& WeierstrassCurve::params() const { return params_; }
 
 void WeierstrassCurve::setScalarMulStrategy(std::shared_ptr<IScalarMulStrategy> s) { mul_ = std::move(s); }
