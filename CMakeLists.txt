@@ -22,8 +22,7 @@ find_package(spdlog REQUIRED)
 file(GLOB_RECURSE CORE_SOURCES CONFIGURE_DEPENDS src/core/*.cpp)
 add_library(ecc_core STATIC ${CORE_SOURCES})
 target_include_directories(ecc_core PUBLIC src /opt/homebrew/include)
-target_link_libraries(ecc_core PUBLIC Threads::Threads)
-# target_link_libraries(ecc_core PUBLIC gmp gmpxx OpenSSL::Crypto nlohmann_json::nlohmann_json spdlog::spdlog)
+target_link_libraries(ecc_core PUBLIC Threads::Threads OpenSSL::Crypto)
 
 # ---- CLI ----
 file(GLOB CLI_SOURCES CONFIGURE_DEPENDS src/cli/*.cpp)

@@ -11,7 +11,7 @@ public:
     using ProtocolBase::ProtocolBase;
     void setPeerPublicKey(const Point& Q) { peerPublicKey_ = Q;}
     const Point& sharedSecret() {return sharedSecret_;}
-protected:
+public:
     void generateKeys() override;
     void performStep() override;
     bool validate() const override;

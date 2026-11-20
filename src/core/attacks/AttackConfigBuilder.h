@@ -9,6 +9,7 @@ public:
     AttackConfigBuilder& threads(unsigned);
     AttackConfigBuilder& samples(unsigned);
     AttackConfigBuilder& target(const BigInt&);
+    AttackConfigBuilder& targetPub(const Point&);
     AttackConfig build() const;
 private:
     AttackConfig cfg_;

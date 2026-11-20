@@ -34,4 +34,3 @@ TEST_CASE("large values (256-bit)") {
     BigInt a("0xFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F", 16);
     REQUIRE(a.toString(16) == "fffffffffffffffffffffffffffffffffffffffffffffffffffffffefffffc2f");
 }
-// TODO: tests for bigint

@@ -3,6 +3,7 @@
 #include "Signature.h"
 #include "KeyPair.h"
 #include <string>
+#include "core/hash/Rfc6979.h"
 
 namespace ecc {
 
@@ -14,14 +15,13 @@ public:
     void setDeterministic(bool on) { useDeterministic_ = on; }
     const Signature& signature() const { return signature_; }
     bool isValid() const { return valid_; }
-protected:
+public:
     void generateKeys() override;
     void performStep() override;
     bool validate() const override;
 private:
     Signature sign(const std::string& msg, const BigInt& d);
     bool verify(const std::string& msg, const Signature& sig, const Point& Q);
-    KeyPair keyPair_;
     Signature signature_;
     Point peerPublicKey_;
     bool valid_ = false;

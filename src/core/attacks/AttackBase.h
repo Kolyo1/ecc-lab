@@ -18,6 +18,8 @@ protected:
     virtual AttackResult report() = 0;
     std::shared_ptr<ICurve> curve_;
     std::shared_ptr<ProtocolBase> protocol_;
+    Point targetPublicKey_;
+    bool success_ = false;
 };
 
 } // namespace ecc

@@ -12,7 +12,7 @@ public:
     const Point& signatureR() const { return signatureR_; }
     const BigInt& signatureS() const { return signatureS_; }
     bool isValid() const { return valid_; }
-protected:
+public:
     void generateKeys() override;
     void performStep() override;
     bool validate() const override;
