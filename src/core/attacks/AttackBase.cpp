@@ -2,6 +2,9 @@
 #include <chrono>
 
 namespace ecc {
+    AttackBase::AttackBase(std::shared_ptr<ICurve> curve, std::shared_ptr<ProtocolBase> protocol)
+        : curve_(std::move(curve)), protocol_(std::move(protocol)), success_(false) {}
+
     AttackResult AttackBase::run(const AttackConfig& cfg){
         auto start = std::chrono::high_resolution_clock::now();
 

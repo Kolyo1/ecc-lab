@@ -115,4 +115,6 @@ namespace ecc {
         };
         return r;
     }
+std::string TimingAttack::name() const { return "Timing"; }
+
 } // namespace ecc

@@ -7,7 +7,7 @@ class NonceReuseAttack : public AttackBase {
 public:
     using AttackBase::AttackBase;
     std::string name() const override;
-protected:
+public:
     void prepare(const AttackConfig& cfg) override;
     void execute() override;
     void analyze() override;

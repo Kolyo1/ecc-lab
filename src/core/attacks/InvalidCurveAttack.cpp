@@ -45,4 +45,6 @@ namespace ecc {
         };
         return r;
     }
+std::string InvalidCurveAttack::name() const { return "InvalidCurve"; }
+
 } // namespace ecc

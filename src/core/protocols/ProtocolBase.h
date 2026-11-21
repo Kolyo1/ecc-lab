@@ -14,6 +14,10 @@ public:
     void run();
     const KeyPair& keyPair() const { return keyPair_; }
     KeyPair& keyPair() { return keyPair_; }
+    std::shared_ptr<ICurve> curve() const { return curve_; }
+    void setCurve(std::shared_ptr<ICurve> c) { curve_ = std::move(c); }
+    void setValidatePoints(bool on) { validatePoints_ = on; }
+    bool validatePoints() const { return validatePoints_; }
 protected:
     virtual void generateKeys() = 0;
     virtual void performStep() = 0;
@@ -23,6 +27,7 @@ protected:
     std::shared_ptr<IScalarMulStrategy> strategy_;
     std::unique_ptr<IProtocolState> state_;
     KeyPair keyPair_;
+    bool validatePoints_ = false;
 };
 
 } // namespace ecc
